@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="logo">🎓 EduResult</div>
+        <div class="top-tag">STUDENT PERFORMANCE SYSTEM</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">✨ SMART RESULT ANALYZER</span>
+            <h1>Student Result<br><span>Calculator</span></h1>
+            <p>Calculate your marks, discover your grade and analyze your academic performance.</p>
+        </div>
+    </section>
+
+    <main class="container">
+
+        <section class="panel input-panel">
+            <div class="section-heading">
+                <div>
+                    <span class="small-label">STUDENT INFORMATION</span>
+                    <h2>Enter Your Details</h2>
+                </div>
+                <span class="heading-icon">📝</span>
+            </div>
+
+            <form id="resultForm">
+
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName"
+                           placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rollNumber">Roll Number</label>
+                    <input type="text" id="rollNumber"
+                           placeholder="Enter roll number" required>
+                </div>
+
+                <div class="subject-heading">
+                    <h3>📚 Subject Marks</h3>
+                    <span>Maximum 100 marks each</span>
+                </div>
+
+                <div class="subjects-grid">
+
+                    <div class="subject-card">
+                        <label for="subject1">Mathematics</label>
+                        <input type="number" id="subject1"
+                               min="0" max="100" placeholder="0 - 100" required>
+                    </div>
+
+                    <div class="subject-card">
+                        <label for="subject2">Physics</label>
+                        <input type="number" id="subject2"
+                               min="0" max="100" placeholder="0 - 100" required>
+                    </div>
+
+                    <div class="subject-card">
+                        <label for="subject3">Chemistry</label>
+                        <input type="number" id="subject3"
+                               min="0" max="100" placeholder="0 - 100" required>
+                    </div>
+
+                    <div class="subject-card">
+                        <label for="subject4">Programming</label>
+                        <input type="number" id="subject4"
+                               min="0" max="100" placeholder="0 - 100" required>
+                    </div>
+
+                    <div class="subject-card">
+                        <label for="subject5">English</label>
+                        <input type="number" id="subject5"
+                               min="0" max="100" placeholder="0 - 100" required>
+                    </div>
+
+                </div>
+
+                <p id="formMessage" class="form-message"></p>
+
+                <button type="submit" class="calculate-btn">
+                    Calculate My Result →
+                </button>
+
+            </form>
+        </section>
+
+        <section id="resultPanel" class="result-panel">
+
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">📊</div>
+                <h2>Your Result Awaits!</h2>
+                <p>Enter your details and marks above to generate your result.</p>
+            </div>
+
+            <div id="resultContent" class="result-content hidden">
+
+                <div class="result-header">
+                    <div>
+                        <span class="small-label">ACADEMIC REPORT</span>
+                        <h2 id="resultName">Student Name</h2>
+                        <p id="resultRoll">Roll Number: 000</p>
+                    </div>
+
+                    <span id="statusBadge" class="status-badge">PASS</span>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card stat-purple">
+                        <span class="stat-icon">🏆</span>
+                        <p>Total Marks</p>
+                        <h2 id="totalMarks">0 / 500</h2>
+                    </div>
+
+                    <div class="stat-card stat-blue">
+                        <span class="stat-icon">📈</span>
+                        <p>Percentage</p>
+                        <h2 id="percentage">0%</h2>
+                    </div>
+
+                    <div class="stat-card stat-pink">
+                        <span class="stat-icon">⭐</span>
+                        <p>Average</p>
+                        <h2 id="average">0</h2>
+                    </div>
+
+                    <div class="stat-card stat-orange">
+                        <span class="stat-icon">🎯</span>
+                        <p>Final Grade</p>
+                        <h2 id="grade">A</h2>
+                    </div>
+
+                </div>
+
+                <div class="panel">
+                    <div class="section-heading">
+                        <div>
+                            <span class="small-label">SUBJECT ANALYSIS</span>
+                            <h2>Marks Overview</h2>
+                        </div>
+                        <span class="heading-icon">📊</span>
+                    </div>
+
+                    <div id="subjectResults" class="subject-results"></div>
+                </div>
+
+                <div class="charts-grid">
+
+                    <div class="panel chart-panel">
+                        <div class="section-heading">
+                            <div>
+                                <span class="small-label">VISUAL ANALYSIS</span>
+                                <h2>Performance Chart</h2>
+                            </div>
+                        </div>
+
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+
+                    <div class="panel chart-panel">
+                        <div class="section-heading">
+                            <div>
+                                <span class="small-label">SKILL ANALYSIS</span>
+                                <h2>Radar Chart</h2>
+                            </div>
+                        </div>
+
+                        <canvas id="radarChart"></canvas>
+                    </div>
+
+                </div>
+
+                <div class="panel insights-panel">
+                    <div class="section-heading">
+                        <div>
+                            <span class="small-label">SMART ANALYSIS</span>
+                            <h2>Performance Insights</h2>
+                        </div>
+                        <span class="heading-icon">💡</span>
+                    </div>
+
+                    <div id="insightsContent" class="insights-grid"></div>
+                </div>
+
+                <button id="printButton" class="print-btn">
+                    🖨️ Print Result
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Made with 💜 | Student Result Calculator</p>
+        <p>HTML • CSS • JavaScript</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
